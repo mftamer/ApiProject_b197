@@ -41,6 +41,8 @@ public class Get03 {
         // Do assertions
 
         // 1st way: Hard Assertion
+        // If you want your test to stop execution when it encounters an error, use Hard Assertion
+        // Use separate body() methods for Hard Assertion
         response.
                 then().
                 statusCode(200).
@@ -51,6 +53,8 @@ public class Get03 {
 
 
         // 2nd way: Soft Assertion
+        // If you want your test to continue execution even after it finds an error, use Soft Assertion
+        // Use single body() method for Soft Assertion
         response.
                 then().
                 statusCode(200).
