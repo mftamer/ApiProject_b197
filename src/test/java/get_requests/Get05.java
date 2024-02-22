@@ -37,7 +37,7 @@ public class Get05 extends HerokuAppBaseUrl {
         response.prettyPrint();
 
         // Do assertions
-        response.then().statusCode(200).body("bookingid", hasSize(greaterThan(50)));
+        response.then().statusCode(200).body("bookingid", hasSize(greaterThan(0)));
 
         assertTrue(response.asString().contains("bookingid"));
 

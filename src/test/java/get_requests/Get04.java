@@ -41,6 +41,7 @@ public class Get04 extends JsonPlaceHolderBaseUrl {
 
         // Set the expected data ... do it later
         // Send the request and get the response
+       // given().spec(spec).when().get("{first}");
         Response response = given(spec).when().get("{first}");
         response.prettyPrint();
 
