@@ -101,9 +101,9 @@ public class Get06 extends HerokuAppBaseUrl {
 
 
         // Set the url
-// Set the expected data
-// Send the request and get the response
-// Do Assertions
+        // Set the expected data
+        // Send the request and get the response
+        // Do Assertions
 
     }
 
