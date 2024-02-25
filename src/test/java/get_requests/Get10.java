@@ -39,7 +39,7 @@ public class Get10 extends HerokuAppBaseUrl {
 
         // Set the expected data
         BookingDatesPojo bookingDates = new BookingDatesPojo("2018-01-01","2019-01-01");
-        HerokuAppPojo expectedData = new HerokuAppPojo("John","Smith",111,true, bookingDates, "Breakfast");
+        HerokuAppPojo expectedData = new HerokuAppPojo("Jane","Doe",111,true, bookingDates, "Extra pillows please");
 
         System.out.println("expectedData = " + expectedData);
 
