@@ -13,6 +13,8 @@ public class HerokuAppPojo {
 
     private String additionalneeds;
 
+    private int id;
+
 
 
 //     2) Create constructors with and without parameters

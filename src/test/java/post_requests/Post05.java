@@ -61,3 +61,7 @@ public class Post05 extends JsonPlaceHolderBaseUrl {
 
 
 }
+// Set the url
+// Set the expected data
+// Send the request and get the response
+// Do Assertions

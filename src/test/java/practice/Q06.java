@@ -2,24 +2,17 @@ package practice;
 
 public class Q06 {
     /*
-     Given
-            https://jsonplaceholder.typicode.com/users/1
-        When
-            User send GET Request to the URL
-        Then
-            HTTP Status Code should be 200
-		And
-		    Response format should be "application/json"
-		And
-		    "name" is "Leanne Graham",
-		And
-		    "email" is "Sincere@april.biz"
-        And
-		    "city" is "Gwenborough"
-		And
-		    "lat" is "-37.3159"
-        And
-		    Company name  is "Romaguera-Crona"
+Given
+              https://reqres.in/api/unknown/
+       When
+            I send GET Request to the URL
+       Then
+                   1)Status code is 200
+            2)Print all pantone_values
+            3)Print all ids greater than 3 on the console
+              Assert that there are 3 ids greater than 3
+            4)Print all names whose ids are less than 3 on the console
+              Assert that the number of names whose ids are less than 3 is 2
      */
 
 

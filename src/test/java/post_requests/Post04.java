@@ -1,13 +1,16 @@
 package post_requests;
 
 import base_urls.HerokuAppBaseUrl;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static test_data.HerokuAppTestData.bookingDatesMapper;
 import static test_data.HerokuAppTestData.herokuAppMapper;
 
@@ -81,7 +84,29 @@ Given
 
             //HOMEWORK
             //2nd: using assertEqual() and jsonPath()
+            JsonPath jsonPath = response.jsonPath();
+            assertEquals(200,response.statusCode());
+            assertEquals(payload.get("firstname"), jsonPath.getString("booking.firstname"));
+            assertEquals(payload.get("lastname"), jsonPath.getString("booking.lastname"));
+            assertEquals(payload.get("totalprice"), jsonPath.getInt("booking.totalprice"));
+            assertEquals(payload.get("depositpaid"), jsonPath.getBoolean("booking.depositpaid"));
+            assertEquals(bookingMap.get("checkin"), jsonPath.getString("booking.bookingdates.checkin"));
+            assertEquals(bookingMap.get("checkout"), jsonPath.getString("booking.bookingdates.checkout"));
+
+            assertEquals(payload.get("additionalneeds"), jsonPath.getString("booking.additionalneeds"));
+
             //3rd way: using maps => you will have to do type casting
+            Map<String ,Object> actualData = response.as(HashMap.class);
+
+            assertEquals(200,response.statusCode());
+            assertEquals(payload.get("firstname"), ((Map) actualData.get("booking")).get("firstname"));
+            assertEquals(payload.get("lastname"), ((Map) actualData.get("booking")).get("lastname"));
+            assertEquals(payload.get("totalprice"), ((Map) actualData.get("booking")).get("totalprice"));
+            assertEquals(payload.get("depositpaid"), ((Map) actualData.get("booking")).get("depositpaid"));
+            assertEquals(bookingMap.get("checkin"), ((Map) ((Map) actualData.get("booking")).get("bookingdates")).get("checkin"));
+            assertEquals(bookingMap.get("checkout"), ((Map) ((Map) actualData.get("booking")).get("bookingdates")).get("checkout"));
+            assertEquals(payload.get("additionalneeds"), ((Map) actualData.get("booking")).get("additionalneeds"));
+
             //4th way: pojo class
 
 

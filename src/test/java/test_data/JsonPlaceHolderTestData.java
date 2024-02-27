@@ -22,6 +22,13 @@ public class JsonPlaceHolderTestData {
         return map;
 
     }
+
+    public static String stringBody(Integer userId, String title, Boolean completed){
+
+        return  "{\"userId\": "+userId+",\"title\": \""+title+"\",\"completed\": "+completed+"}";
+
+    }
+
 /*
 We use wrapper class of Data types (Integer, Boolean etc.) in this class so that when we use Put or Patch methods to
 update one value of the existing data, we can send null values as well If we use primitive int, or boolean,
