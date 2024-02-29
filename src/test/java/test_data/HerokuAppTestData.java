@@ -10,8 +10,12 @@ public class HerokuAppTestData {
 
         Map<String,String> map = new HashMap<>();
        // map.put("checkin","2018-01-01"); //HARD CODING
-        map.put("checkin",checkin);
-        map.put("checkout",checkout);
+        if (checkin !=null) {
+            map.put("checkin", checkin);
+        }
+        if (checkout !=null) {
+            map.put("checkout", checkout);
+        }
         return map;
     }
 
@@ -20,12 +24,24 @@ public class HerokuAppTestData {
     //Use Integer as a wrapper class to deal with the "null" values.
 
         Map<String, Object> map = new HashMap<>();
-        map.put("firstname",firstname);
-        map.put( "lastname", lastname);
-        map.put("totalprice", totalprice);
-        map.put( "depositpaid", depositpaid);
-        map.put( "bookingdates", bookingdates);
-        map.put( "additionalneeds", additionalneeds);
+        if (firstname != null) {
+            map.put("firstname", firstname);
+        }
+        if (lastname != null) {
+            map.put("lastname", lastname);
+        }
+        if (totalprice != null) {
+            map.put("totalprice", totalprice);
+        }
+        if (depositpaid != null) {
+            map.put("depositpaid", depositpaid);
+        }
+        if (bookingdates != null) {
+            map.put("bookingdates", bookingdates);
+        }
+        if (additionalneeds != null) {
+            map.put("additionalneeds", additionalneeds);
+        }
         return map;
     }
 
