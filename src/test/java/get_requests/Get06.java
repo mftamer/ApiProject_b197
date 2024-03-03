@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
+import org.testng.asserts.SoftAssert;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -39,7 +40,7 @@ public class Get06 extends HerokuAppBaseUrl {
     @Test
     public void get06(){
         //Set the url
-        spec.pathParams("first","booking", "second", 55);
+        spec.pathParams("first","booking", "second", 80);
         //if it gives error 404, go to postman app and check for the John Smith (devs can remove or change it)
 
         //Set the expected data ... do it later
@@ -59,7 +60,7 @@ public class Get06 extends HerokuAppBaseUrl {
                         "depositpaid", equalTo(true),
                         "bookingdates.checkin", equalTo("2018-01-01"), //this is for nested JSON
                         "bookingdates.checkout", equalTo("2019-01-01"),
-                        "additionalneeds",equalTo("Breakfast"));
+                        "additionalneeds",equalTo("Dinner"));
 
         //using is() method
         response.
@@ -72,7 +73,7 @@ public class Get06 extends HerokuAppBaseUrl {
                         "depositpaid", is(true),
                         "bookingdates.checkin", is("2018-01-01"),
                         "bookingdates.checkout", is("2019-01-01"),
-                        "additionalneeds",is("Breakfast"));
+                        "additionalneeds",is("Dinner"));
 
         /*
         NOTE: We have multiple ways of extracting the data out of response body:
@@ -95,16 +96,28 @@ public class Get06 extends HerokuAppBaseUrl {
         assertEquals(true, jsonPath.getBoolean("depositpaid"));
         assertEquals("2018-01-01", jsonPath.getString("bookingdates.checkin"));
         assertEquals("2019-01-01", jsonPath.getString("bookingdates.checkout"));
-        assertEquals("Breakfast", jsonPath.getString("additionalneeds"));
+        assertEquals("Dinner", jsonPath.getString("additionalneeds"));
 
         //Soft-assertion in TestNG framework
+        //We need to follow 3 steps:
+
+        //1st step: Create an object from SoftAssert class
+        SoftAssert softAssert = new SoftAssert();
+
+        //2nd step: Do assertion using that object
+        softAssert.assertEquals(200, response.statusCode());
+        softAssert.assertEquals(jsonPath.getString("firstname"),"John","Firstname didn't match");
+        softAssert.assertEquals(jsonPath.getString("lastname"),"Smith","Lastname didn't match");
+
+        //3rd step: use assertAll() in the end. (Without this step, it will not work)
+        softAssert.assertAll();
 
 
-        // Set the url
-        // Set the expected data
-        // Send the request and get the response
-        // Do Assertions
 
     }
 
 }
+// Set the url
+// Set the expected data
+// Send the request and get the response
+// Do Assertions
