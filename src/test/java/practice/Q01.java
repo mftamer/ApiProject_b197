@@ -1,6 +1,13 @@
 package practice;
 
-public class Q01 {
+import base_urls.ReqresBaseUrl;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+
+    public class Q01 extends ReqresBaseUrl {
 
     /*
         Given
@@ -15,5 +22,34 @@ public class Q01 {
             Status Line should be HTTP/1.1 200 OK
      */
 
+        @Test
+        public void test(){
 
-}
+            // Set the URL
+            spec.pathParams("first", "users", "second", 3);
+
+            // Set the expected data
+
+
+            // Send the request and get the response
+            Response response = given().spec(spec).when().get("/{first}/{second}");
+            response.prettyPrint();
+
+            // Do assertions
+//        assertEquals(200, response.statusCode());
+//        assertEquals("application/json", response.contentType());
+//        assertEquals("HTTP/1.1 200 OK", response.statusLine());
+
+            response.
+                    then().
+                    assertThat().
+                    statusCode(200).
+                    contentType(ContentType.JSON).
+                    statusLine("HTTP/1.1 200 OK");
+
+
+        }
+
+
+
+    }

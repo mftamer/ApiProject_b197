@@ -1,6 +1,14 @@
 package practice;
 
-public class Q07 {
+import base_urls.JsonPlaceHolderBaseUrl;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
+
+public class Q07 extends JsonPlaceHolderBaseUrl {
     /*
             Given
             https://jsonplaceholder.typicode.com/users/1
@@ -21,4 +29,22 @@ public class Q07 {
         And
 		    Company name  is "Romaguera-Crona"
      */
+    @Test
+    public void test(){
+
+        spec.pathParams("first", "users", "second", 1);
+
+        Response response = given(spec).get("{first}/{second}");
+        response.prettyPrint();
+
+        response.
+                then().
+                statusCode(200).
+                contentType(ContentType.JSON).
+                body("name",is("Leanne Graham"),
+                        "email",is("Sincere@april.biz"),
+                        "address.city", is("Gwenborough"),
+                        "address.geo.lat", is("-37.3159"),
+                        "company.name",is("Romaguera-Crona"));
+    }
 }

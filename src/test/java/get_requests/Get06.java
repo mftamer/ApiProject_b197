@@ -111,6 +111,20 @@ public class Get06 extends HerokuAppBaseUrl {
 
         //3rd step: use assertAll() in the end. (Without this step, it will not work)
         softAssert.assertAll();
+        assertEquals("Dinner", jsonPath.getString("additionalneeds"));
+
+
+//        // Soft Assertion in TestNG framework
+//        // We need to follow 3 steps:
+//        // 1st step: Create object from SoftAssert class
+//        SoftAssert softAssert = new SoftAssert();
+//        // 2nd step: do assertion using that object
+//        softAssert.assertEquals(200, response.statusCode());
+//        softAssert.assertEquals(jsonPath.getString("firstname"), "John", "Firstname didn't match");
+//        softAssert.assertEquals(jsonPath.getString("lastname"), "Smith", "Lastname didn't match");
+//
+//        // 3rd step: use assertAll() in the end. (Without this, it will not work)
+//        softAssert.assertAll();
 
 
 
